@@ -1,7 +1,5 @@
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.FileReader" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -33,7 +31,7 @@
 %>
 
 <h5><p>Введите ваше имя:</p></h5>
-<form action="processName" method="post">
+<form action="game" method="post">
     <input type="text" name="playerName">
     <input type="submit" value="Enter">
 </form>

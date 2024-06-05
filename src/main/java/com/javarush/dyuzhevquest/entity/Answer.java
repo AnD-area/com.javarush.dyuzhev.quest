@@ -1,8 +1,18 @@
 package com.javarush.dyuzhevquest.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Answer {
 
+    private String text;
+    private String id;
     private String answerText;
-    Question nextQuestion;
+    private Question nextQuestion;
+    private String gameOverMessage;
 
+    public Answer() {
+    }
 }
