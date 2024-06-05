@@ -118,30 +118,36 @@ public class GameServlet extends HttpServlet {
                 // Если нет следующего вопроса, игра закончена
                 String gameOverMessage;
                 if (selectedAnswer.getId() != null) {
-                    switch (selectedAnswer.getId()) {
-                        case "31":
-                            gameOverMessage = "Вперед - в светлое будущее!";
-                            break;
-                        case "12":
-                            gameOverMessage = "Да вы шутник! Давайте заново";
-                            break;
-                        case "22":
-                            gameOverMessage = "Вы утонули в утиной типизации!";
-                            break;
-                        case "32":
-                            gameOverMessage = "+5 к индусскому английскому, -10 к мотивации";
-                            break;
-                        default:
-                            gameOverMessage = "";
-                            break;
-                    }
+                    Map<String, String> gameOverMessages = new HashMap<>();
+                    gameOverMessages.put("31", "Вперед - в светлое будущее!");
+                    gameOverMessages.put("12", "Да вы шутник! Давайте заново");
+                    gameOverMessages.put("22", "Вы утонули в утиной типизации!");
+                    gameOverMessages.put("32", "+5 к индусскому английскому, -10 к мотивации");
+
+                    gameOverMessage = gameOverMessages.getOrDefault(selectedAnswer.getId(), "");
+//                    switch (selectedAnswer.getId()) {
+//                        case "31":
+//                            gameOverMessage = "Вперед - в светлое будущее!";
+//                            break;
+//                        case "12":
+//                            gameOverMessage = "Да вы шутник! Давайте заново";
+//                            break;
+//                        case "22":
+//                            gameOverMessage = "Вы утонули в утиной типизации!";
+//                            break;
+//                        case "32":
+//                            gameOverMessage = "+5 к индусскому английскому, -10 к мотивации";
+//                            break;
+//                        default:
+//                            gameOverMessage = "";
+//                            break;
+//                    }
                 } else {
-                    // обработка случая, когда selectedAnswer.getText() является null
+                    // когда selectedAnswer.getId() == null
                     gameOverMessage = "Игра окончена";
                 }
                 request.getSession().setAttribute("gameOverMessage", gameOverMessage);
 
-                // Увеличиваем количество сыгранных игр
                 Integer gamesPlayed = (Integer) request.getSession().getAttribute("gamesPlayed");
                 if (gamesPlayed == null) {
                     gamesPlayed = 0;
