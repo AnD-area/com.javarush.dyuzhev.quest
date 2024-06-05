@@ -62,7 +62,7 @@ public class GameServlet extends HttpServlet {
             }
         }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -125,23 +125,6 @@ public class GameServlet extends HttpServlet {
                     gameOverMessages.put("32", "+5 к индусскому английскому, -10 к мотивации");
 
                     gameOverMessage = gameOverMessages.getOrDefault(selectedAnswer.getId(), "");
-//                    switch (selectedAnswer.getId()) {
-//                        case "31":
-//                            gameOverMessage = "Вперед - в светлое будущее!";
-//                            break;
-//                        case "12":
-//                            gameOverMessage = "Да вы шутник! Давайте заново";
-//                            break;
-//                        case "22":
-//                            gameOverMessage = "Вы утонули в утиной типизации!";
-//                            break;
-//                        case "32":
-//                            gameOverMessage = "+5 к индусскому английскому, -10 к мотивации";
-//                            break;
-//                        default:
-//                            gameOverMessage = "";
-//                            break;
-//                    }
                 } else {
                     // когда selectedAnswer.getId() == null
                     gameOverMessage = "Игра окончена";
