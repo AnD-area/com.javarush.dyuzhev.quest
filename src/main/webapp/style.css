@@ -1,7 +1,37 @@
-html {
-    max-width: 60%;
-    margin: 0 auto;
+body {
+    background-image: url('/images/Initial.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
 }
+
+.container {
+    max-width: 50%;
+    margin: auto;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.intro-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.label-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*.input-field {*/
+/*    width: 30%; !* Уменьшаем ширину поля ввода *!*/
+/*}*/
+
+/*html {*/
+/*    max-width: 60%;*/
+/*    margin: 0 auto;*/
+/*}*/
 
 p {
     text-indent: 20px;
