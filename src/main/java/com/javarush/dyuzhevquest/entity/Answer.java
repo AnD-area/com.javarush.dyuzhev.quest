@@ -12,6 +12,7 @@ public class Answer {
     private String answerText;
     private Question nextQuestion;
     private String gameOverMessage;
+    private boolean isAnswerCorrect;
 
     public Answer() {
     }

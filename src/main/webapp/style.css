@@ -1,13 +1,23 @@
-body {
-    background-image: url('/images/Initial.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-}
-
 .container {
     max-width: 50%;
     margin: auto;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-custom1 {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    width: 30%;
 }
 
 .text-left {
@@ -19,20 +29,64 @@ body {
     font-weight: bold;
 }
 
-.label-text {
-    font-size: 20px;
+.games-played-text {
+    font-size: 14px;
     font-weight: bold;
 }
 
-/*.input-field {*/
-/*    width: 30%; !* Уменьшаем ширину поля ввода *!*/
-/*}*/
-
-/*html {*/
-/*    max-width: 60%;*/
-/*    margin: 0 auto;*/
-/*}*/
+.label-text {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
 p {
     text-indent: 20px;
+}
+
+.initial {
+    background-image: url('images/Initial.jpg');
+}
+
+body.answer-waiting {
+    background: url('images/Answer_waiting.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body.answer-right {
+    background: url('images/Answer_right.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body.answer-wrong {
+    background: url('images/Answer_wrong.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-over-message {
+    font-size: 28px;
+    font-style: italic;
+    color: ghostwhite;
 }

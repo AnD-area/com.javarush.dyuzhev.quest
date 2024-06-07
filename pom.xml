@@ -84,8 +84,8 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory>src/main/resources/images</directory>
-                            <targetPath>resources/images</targetPath>
+                            <directory>src/main/webapp/images</directory>
+                            <targetPath>images</targetPath>
                             <includes>
                                 <include>**/*.*</include>
                             </includes>

@@ -58,7 +58,20 @@ public class GameServlet extends HttpServlet {
             for (Answer answer : question.getAnswers()) {
                 if (answer.getId().endsWith("1")) {
                     answer.setNextQuestion(questions.get(i + 1));
+                    answer.setAnswerCorrect(true);
+                } else {
+                    answer.setAnswerCorrect(false);
                 }
+            }
+        }
+
+        // Обрабатываем последний вопрос отдельно
+        Question lastQuestion = questions.get(questions.size() - 1);
+        for (Answer answer : lastQuestion.getAnswers()) {
+            if (answer.getId().equals("31")) {
+                answer.setAnswerCorrect(true);
+            } else if (answer.getId().equals("32")) {
+                answer.setAnswerCorrect(false);
             }
         }
     }
@@ -85,6 +98,11 @@ public class GameServlet extends HttpServlet {
             return;
         }
 
+        // Если это первый вопрос, установить класс body в answer-waiting
+        if ("1".equals(questionId)) {
+            request.getSession().setAttribute("bodyClass", "answer-waiting");
+        }
+
         request.setAttribute("question", question);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/question.jsp");
         dispatcher.forward(request, response);
@@ -96,6 +114,12 @@ public class GameServlet extends HttpServlet {
         if (playerName != null) {
             // Если пользователь ввел имя, сохранить его в сессии и перенаправить на первый вопрос
             request.getSession().setAttribute("playerName", playerName);
+
+            if (request.getSession().getAttribute("gamesPlayed") == null) {
+                request.getSession().setAttribute("gamesPlayed", 0);
+            }
+            // Установить isAnswerCorrect в false, так как это начало новой игры
+            request.getSession().setAttribute("isAnswerCorrect", false);
             response.sendRedirect("/game?id=1");
             return;
         }
@@ -111,8 +135,12 @@ public class GameServlet extends HttpServlet {
         }
 
         if (selectedAnswer != null) {
+            request.getSession().setAttribute("isAnswerCorrect", selectedAnswer.isAnswerCorrect());
+            String className = selectedAnswer.isAnswerCorrect() ? "answer-right" : "answer-wrong";
+            request.getSession().setAttribute("bodyClass", className);
             if (selectedAnswer.getNextQuestion() != null) {
-                // Если есть следующий вопрос, перенаправляем на него
+                // Если есть следующий вопрос, установить класс body в answer-waiting и перенаправить на него
+                request.getSession().setAttribute("bodyClass", "answer-waiting");
                 response.sendRedirect("/game?questionId=" + selectedAnswer.getNextQuestion().getId());
             } else {
                 // Если нет следующего вопроса, игра закончена
@@ -137,6 +165,7 @@ public class GameServlet extends HttpServlet {
                 }
                 gamesPlayed++;
                 request.getSession().setAttribute("gamesPlayed", gamesPlayed);
+                request.setAttribute("isAnswerCorrect", selectedAnswer.isAnswerCorrect());
                 request.getRequestDispatcher("/gameover.jsp").forward(request, response);
             }
         }
