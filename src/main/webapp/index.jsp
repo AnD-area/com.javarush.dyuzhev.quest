@@ -1,7 +1,8 @@
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.FileReader" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/bootstrap_template.jsp" %>
+<%@ page import="org.apache.commons.io.IOUtils" %>
+<%@ page import="java.util.Objects" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,11 @@
     <meta charset="UTF-8">
     <link href="style.css" rel="stylesheet">
     <title>Welcome</title>
+    <script>
+        function setWaitingBackground() {
+            document.body.className = 'answer-waiting';
+        }
+    </script>
 </head>
 <body class="initial">
 <div class="container">
@@ -16,24 +22,15 @@
     <h2>Вступление:</h2><br>
 
     <div class="intro-text text-left">
-        <% String filePath = request.getServletContext().getRealPath("/quest_description.txt");
+        <% String filePath = "/quest_description.txt";
             try {
-                BufferedReader reader = new BufferedReader(new FileReader(filePath));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    out.println(line);
-                }
-                reader.close();
+                String content = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+                        .getResourceAsStream(filePath)), StandardCharsets.UTF_8);
+                out.println(content);
             } catch (Exception e) {
                 out.println("Ошибка при чтении файла: " + e.getMessage());
             }
         %>
-
-        <script>
-            function setWaitingBackground() {
-                document.body.className = 'answer-waiting';
-            }
-        </script>
 
         <div class="d-flex justify-content-center">
             <form action="game" method="post" onsubmit="setWaitingBackground()">
@@ -51,8 +48,8 @@
                 </div>
             </form>
         </div>
-
     </div>
 </div>
+
 </body>
 </html>
