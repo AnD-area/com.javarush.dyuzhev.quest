@@ -18,10 +18,10 @@
         <a href="./game" class="btn btn-secondary btn-custom1">НАЧАТЬ ЗАНОВО</a>
         <br><br>
     </div>
-    <br><p><h5>Статистика:</h5></p>
+    <br>
+    <p><h5>Статистика:</h5>
     <p class="games-played-text">Имя: ${sessionScope.playerName}</p>
     <p class="games-played-text">Игр сыграно: ${sessionScope.gamesPlayed}</p>
-
 </div>
 </body>
 </html>
