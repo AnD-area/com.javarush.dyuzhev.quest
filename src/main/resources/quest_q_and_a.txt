@@ -4,6 +4,6 @@
 11: Да!
 12: Не хочу!
 21: Конечно же Java!
-22: Божественный JavaScript
+22: JavaScript!
 31: JavaRush
 32: У того индуса из youtube!
